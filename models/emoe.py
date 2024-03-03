@@ -254,7 +254,7 @@ class ElasticE(nn.Module):
             self.register_buffer(f'expert_emb_{i}', emb)
 
     def distance(self, emb_a, emb_b):
-        return torch.norm(emb_a - emb_b)
+        return torch.cosine_similarity(emb_a, emb_b)
 
     def select_experts(self, x):
         # compute distances and select
